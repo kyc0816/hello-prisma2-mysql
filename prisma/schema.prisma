@@ -32,3 +32,58 @@ model User {
   password    String          @db.VarChar(255)
   projects    ProjectUser[]
 }
+
+// --------------------  SEAT_MAP table structure applied(210703)  ----------------------------
+
+
+model ORG_GROUP_INFO {
+  group_id          String          @id @db.VarChar(45) 
+  group_name        String          @db.VarChar(45) 
+  par_group_id      String          @db.VarChar(45) 
+  group_path        String          @db.VarChar(200) 
+  cocd              Int             @db.Int
+  maps              GROUP_TO_MAP[]
+}
+
+model GROUP_TO_MAP { // relationship table model
+  oRG_GROUP_INFO    ORG_GROUP_INFO  @relation(fields: [groupId], references: [group_id])
+  sEAT_MAP_INFO     SEAT_MAP_INFO   @relation(fields: [mapId], references: [map_id])
+  groupId           String          @db.VarChar(45)
+  mapId             String          @db.VarChar(45)
+  @@id([groupId, mapId]) // This is called 'composite primary key'. Certain combination of projectID and userID should be unique.
+}
+
+model SEAT_MAP_INFO {
+  map_id            String          @id @db.VarChar(45) 
+  map_name          String          @db.VarChar(45) 
+  groups            GROUP_TO_MAP[]  
+  in_charges        in_charge_MAP[]
+  status            String          @db.VarChar(45) 
+  revision_date     DateTime        @db.DateTime()
+  is_in_use         Int
+  screen_elements   Json            @db.Json
+}
+
+model in_charge_MAP {
+  sEAT_MAP_INFO     SEAT_MAP_INFO   @relation(fields: [mapId], references: [map_id])
+  oRG_USER_INFO     ORG_USER_INFO   @relation(fields: [loginId], references: [login_id])
+  loginId           String          @db.VarChar(45)
+  mapId             String          @db.VarChar(45)
+  @@id([loginId, mapId]) // This is called 'composite primary key'. Certain combination of projectID and userID should be unique.
+}
+
+model ORG_USER_INFO {
+  login_id          String          @id @db.VarChar(45)
+  user_name         String          @db.VarChar(45)                                     
+  group_name        String          @db.VarChar(45)                                      
+  par_group_id      String          @db.VarChar(45)                                        
+  position_id       String          @db.VarChar(45)                                       
+  position_name     String          @db.VarChar(45)                                         
+  office_tel        String          @db.VarChar(45)                                      
+  email             String          @db.VarChar(45)                                 
+  node_type         Int             @db.Int                                     
+  user_level        Int             @db.Int                                      
+  gubun             Int             @db.Int                                 
+  group_id          String          @db.VarChar(45)                                    
+  maps              in_charge_MAP[]
+}

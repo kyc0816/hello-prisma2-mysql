@@ -80,3 +80,20 @@ tableplus 가보면 딱 하나 더있다. id. @relations 표시된 column은 걍
 (1) git
 (2) docker (docker compose up)
 (3) others (npx ts-node index.ts)
+
+-----------------------------------------------210703-----------------------------------------------
+-----------------------------------------------210703-----------------------------------------------
+
+9. 실제 자리배치도 DB 스키마에 맞게 sqldbm에서 DB diagram을 그려봤다 --> https://app.sqldbm.com/MySQL/Edit/p175427/#
+
+10. 실제 자리배치도 DB 스키마에 맞게 schema.prisma에 테이블들을 추가했다.
+
+DB diagram는 시각적 이해를 위한 것으로, 실제 스키마와는 차이가 있다. 예를들어, 저 사이트에는 prisma의 relationship table이 없어서
+그냥 model을 하나 더 만들어준걸로하고 composite primary key(@@id)도 없어서 그냥 연결하려는 두 model의 key들을 저렇게 각각 적어줌
+
+그리고 prisma에서는 relationship table이 두 table을 이어주면, 그 두 table들 각각의 안쪽에 그 relationship table을 
+넣어줘야한다. 즉, 예를들어 GROUP_TO_MAP 테이블이 ORG_GROUP_INFO 테이블과 SEAT_MAP_INFO 테이블을 이어주니까, 그 두 테이블들 안에 
+GROUP_TO_MAP 테이블을 각각 maps, groups라는 이름으로 넣었다. 이 때 maps, groups라고 이름 지은 것은 이전의 예시였던 Project,
+User, ProjectUser의 경우에 그런 식으로 하길래 나도 그렇게 맞춰준 것이다. 그리고 마찬가지로 relationship table 안에서, 즉
+예를들어 GROUP_TO_MAP 테이블 안에서 둘을 이어줄 때 둘 안의 group_id, map_id를 그대로 가져오지 않고 groupId, mapId로 가져온 것도
+마찬가지로 원래 Project, User, ProjectUser에서 그렇게 해서 그런 것이다.
