@@ -97,3 +97,17 @@ GROUP_TO_MAP 테이블을 각각 maps, groups라는 이름으로 넣었다. 이 
 User, ProjectUser의 경우에 그런 식으로 하길래 나도 그렇게 맞춰준 것이다. 그리고 마찬가지로 relationship table 안에서, 즉
 예를들어 GROUP_TO_MAP 테이블 안에서 둘을 이어줄 때 둘 안의 group_id, map_id를 그대로 가져오지 않고 groupId, mapId로 가져온 것도
 마찬가지로 원래 Project, User, ProjectUser에서 그렇게 해서 그런 것이다.
+
+
+-----------------------------------------------210710-----------------------------------------------
+-----------------------------------------------210710-----------------------------------------------
+
+11. 지난번에 schema.prisma에 추가한 것들을 db에 반영하기위해 npx prisma migrate dev --name ${name} 새로 해줌 ( ${name}에는 넣고 싶은 이름 넣는거 알지? )
+그리고 tableplus 확인해보니 제대로 올라간거 확인함. 그러나 스키마만 있고 실제 데이터는 없지. 이제 데이터를 넣어주자. 다원에서 보내준 예시 데이터들을 참고하여 fake 데이터들 들어있는 data2.ts를 만들 것이다.
+(https://docs.google.com/presentation/d/1Go6ZWakCjObu4OXlwRBYMnDkUVYob5BQ/edit#slide=id.p26 참고)
+
+12. 대강의 structure를 그려보았다. --> './src/img/etc/reference/data2_structure.jpg'
+
+13. 만든 data2.ts를 올려주기위해 index2.ts 만들었고 그걸 읽어오는 index3.ts까지 만들어서 해봤고.. 잘돌아간다.
+
+14. 앞으로 할 일  : 파일명 바꾸고 폴더 따로 만들어서 얘네 fake 데이터들은 따로 빼주자.
