@@ -122,3 +122,11 @@ User, ProjectUser의 경우에 그런 식으로 하길래 나도 그렇게 맞�
 
 16. index3.ts는 자리배치도 fake data 읽어오는건데 갑자기 땡겨서 package.json안에 scripts안에 등록해줬다 ㅋㅋ
 <"fake-read-seat": "ts-node fake/index/index3.ts"> 이거니까 돌리려면 <npm run fake-read-seat> 일케하면 됨)
+
+17. GitHub에 올리는거 갑자기 안됨,, --> GitHub에서 이제 password 기반 인증 방식은 depracate돼서(?) 벌어진 일,,
+
+https://stackoverflow.com/a/66830126 여기에 해결 방법이 있었음. 즉 터미널 켜고 지금 이 프로젝트 폴더로 cd cd 해서 온 뒤
+
+git remote set-url origin https://kyc0816:<my_token>@github.com/kyc0816/hello-prisma2-mysql.git
+
+이 커맨드를 쳐줬음. 그러니까 push 정상 작동함... 저 my_token은 이메일 뒤져보면 있음.
