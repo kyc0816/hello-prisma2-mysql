@@ -1,3 +1,5 @@
+// fake data of 'project & user & projectUser' schema
+
 export const users = [
     {
         name: "Bob Jones",

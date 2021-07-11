@@ -1,3 +1,6 @@
+// fake data of '자리 배치도' schema
+// (Read from db)
+
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient()

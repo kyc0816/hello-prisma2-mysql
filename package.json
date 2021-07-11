@@ -4,7 +4,8 @@
   "description": "1. 아래 링크에서 prisma 부분은 빼고 docker-compose.yml 만든다",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fake-read-seat": "ts-node fake/index/index3.ts"
   },
   "keywords": [],
   "author": "",

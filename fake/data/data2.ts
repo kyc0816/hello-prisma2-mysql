@@ -1,3 +1,5 @@
+// fake data of '자리 배치도' schema
+
 export const org_groups = [
     {
         group_id: '0010001',

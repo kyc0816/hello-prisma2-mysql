@@ -1,5 +1,8 @@
+// fake script of 'project & user & projectUser' schema
+// (Upload to server - quoted out / Read - still alive)
+
 import { PrismaClient } from '@prisma/client';
-import { assignments, projects, users } from './data/data';
+import { assignments, projects, users } from '../data/data';
 
 const prisma = new PrismaClient()
 

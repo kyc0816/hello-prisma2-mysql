@@ -1,5 +1,8 @@
+// fake script of '자리 배치도' schema
+// (Upload to database)
+
 import { PrismaClient } from '@prisma/client';
-import { org_groups, org_groups_to_maps, org_maps, org_maps_to_users, org_users } from './data/data2';
+import { org_groups, org_groups_to_maps, org_maps, org_maps_to_users, org_users } from '../data/data2';
 
 const prisma = new PrismaClient()
 
