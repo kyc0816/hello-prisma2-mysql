@@ -1,4 +1,4 @@
-// fake data of '자리 배치도' schema
+// fake script of '자리 배치도' schema
 // (Read from db)
 
 import { PrismaClient } from '@prisma/client';

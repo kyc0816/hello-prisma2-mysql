@@ -138,4 +138,21 @@ git remote set-url origin https://kyc0816:<my_token>@github.com/kyc0816/hello-pr
 
 얘네들은 딱히 package.json에 scripts에 안넣어줬으니 그냥 ts-node로 실행해줄건데, 새 터미널을 파서 src/server/cores에서 ts-node로 해줄거다. 근데!!! ((주의)) 새 터미널을 팠으니 source.env를 다시 해줘야한다. --> 결과 : 잘나옴. commit 해준다.
 
-19. 
+19. 구현하다보니 의문 생긴게 하나 있음. 첫 화면에서 map(배치도)을 만들 때 관리자, 부서까지 같이 입력해줘야된다. 즉 create로
+map을 만드는 것 뿐만 아니라, 입력된 관리자에 대해 InCharge와 map의 릴레이션도 만들어줘야되고, 부서에 대해
+group과 map의 릴레이션도 만들어줘야하는 것이다. 그래서 생각했다. 그럼 콜을 보낼 때 map이 확실히 만들어진 뒤에야 걔에 대한 릴레이션도
+만들 수 있을 텐데.. 뭐 .then() 이라도 써야하는건가? --> 그렇지 않다. 왜냐면 릴레이션을 만들 때 애초에 실제 만든 map 객체 자체가
+필요한 것이 아니라 걍 걔의 id만 알면 되는 것이니까... (아 근데 생각해보니 걔의 id를 어떻게 알아낼거지? 이건 뭐 서버에 요청해야겠네)
+그리고 그것과 관련해서, 만들라는 콜 보낸 뒤에 바로 다시 읽어오는 실험도 해봤다. 그것도 갠춘 (index-test.ts에서 실험해줌. 결과는 갠춘갠춘.)   
+
+20. (토막 정보) index-test.ts 하다보니 id를 갖고 찾으려면 아래와 같이 하면 된다.
+
+const fourth_user = await prisma.user.findUnique({ 
+  where: {
+    id: 4,
+  },
+})
+(출처 : https://www.prisma.io/docs/concepts/components/prisma-client/crud)
+
+21. 암튼 본론으로 돌아와서 지금 create로 map을 만들었을 때 방금 만들어진 그 map의 id를 받아와야한다 --> index-tests.ts에 
+실험 (3)으로 기록해놨는데, 그냥 create하는 구문을 변수에 저장하면 방금 만든거의 정보를 리턴한걸 받을 수 있다!!
