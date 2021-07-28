@@ -19,7 +19,7 @@ export const org_groups = [
         group_id: '001000201',
         group_name: '통신팀',
         par_group_id: '0010002',
-        group_path: '파주시>행정안전국>정보통신과',
+        group_path: '파주시>행정안전국>정보통신과>통신팀',
         cocd: 1,
     },
     {
